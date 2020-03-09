@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    ServerName {{ domain }}
+    ServerAlias www.{{ domain }}
+    DocumentRoot /home/subwebbuild/www/{{ domain }}
+
+    RewriteEngine On
+
+    ProxyPass / uwsgi://127.0.0.1:8001/
+
+    LogLevel debug
+    ErrorLog ${APACHE_LOG_DIR}/{{ domain }}-error.log
+    CustomLog ${APACHE_LOG_DIR}/{{ domain }}-access.log combined
+
+</VirtualHost>
+
